@@ -5,9 +5,9 @@ public class RecursivePascal extends ErrorPascal {
     /**
      * Define if the triangle is to be printed upside down or right-side up.
      */
-    private boolean upsideDown = false;
+    public boolean upsideDown = false;
 
-    private int[][] coeffTable;
+    public int[][] coeffTable;
 
     /**
      * Print a simple Pascal's triangle using recursion. Use upsideDown to toggle printing direction.
@@ -15,12 +15,13 @@ public class RecursivePascal extends ErrorPascal {
      * @param n is the number of levels of the triangle
      */
     public void printPascal(int n) {
+        validateParameters(n);
         if (n == 0) {
-            System.out.format("%6d",(binom(0, 0)));
+            System.out.format("%6d ",(binom(0, 0)));
         } else {
             if (upsideDown) {
                 for (int i = 0; i <= n; i++) {
-                    System.out.format("%6d", (binom(n, i)));
+                    System.out.format("%6d ", (binom(n, i)));
                 }
                 System.out.print("\n");
                 printPascal(n - 1);
@@ -28,7 +29,7 @@ public class RecursivePascal extends ErrorPascal {
                 printPascal(n - 1);
                 System.out.print("\n");
                 for (int i = 0; i <= n; i++) {
-                    System.out.format("%6d", (binom(n, i)));
+                    System.out.format("%6d ", (binom(n, i)));
                 }
             }
         }
@@ -42,6 +43,8 @@ public class RecursivePascal extends ErrorPascal {
      * @return the binomial coefficient
      */
     public int binom(int n, int k) {
+        validateParameters(n, k);
+
         if (coeffTable[n][k] != 0) {
             return coeffTable[n][k];
         }
@@ -52,13 +55,5 @@ public class RecursivePascal extends ErrorPascal {
         int coeff = binom(n - 1, k - 1) + binom(n - 1, k);
         coeffTable[n][k] = coeff;
         return coeff;
-    }
-
-    public static void main(String[] args) {
-        RecursivePascal pasc = new RecursivePascal();
-        pasc.upsideDown = true;
-        pasc.coeffTable = new int[51][51];
-        pasc.printPascal(50);
-
     }
 }

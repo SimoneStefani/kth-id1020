@@ -12,7 +12,7 @@ public class IterativePascal extends ErrorPascal {
         validateParameters(n);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= i; j++) {
-                System.out.format("%6d", (binom(i, j)));
+                System.out.format("%6d ", (binom(i, j)));
             }
             System.out.print("\n");
         }
