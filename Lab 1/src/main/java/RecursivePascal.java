@@ -1,7 +1,7 @@
 /**
  * Created by S. Stefani on 2016-11-03.
  */
-public class RecursivePascal {
+public class RecursivePascal implements Pascal {
     /**
      * Define if the triangle is to be printed upside down or right-side up.
      */
@@ -14,7 +14,7 @@ public class RecursivePascal {
      *
      * @param n is the number of levels of the triangle
      */
-    private void printPascal(int n) {
+    public void printPascal(int n) {
         if (n == 0) {
             System.out.format("%6d",(binom(0, 0)));
         } else {
@@ -41,7 +41,7 @@ public class RecursivePascal {
      * @param k is the column
      * @return the binomial coefficient
      */
-    private int binom(int n, int k) {
+    public int binom(int n, int k) {
         if (coeffTable[n][k] != 0) {
             return coeffTable[n][k];
         }
