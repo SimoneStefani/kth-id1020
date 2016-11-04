@@ -41,10 +41,4 @@ public class IterativePascal extends ErrorPascal {
 
         return coeffBinom[k];
     }
-
-    public static void main(String[] args) {
-        IterativePascal pasc = new IterativePascal();
-
-        pasc.printPascal(10);
-    }
 }
