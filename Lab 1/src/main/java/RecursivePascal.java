@@ -7,6 +7,8 @@ public class RecursivePascal {
      */
     private boolean upsideDown = false;
 
+    private int[][] coeffTable;
+
     /**
      * Print a simple Pascal's triangle using recursion. Use upsideDown to toggle printing direction.
      *
@@ -29,7 +31,6 @@ public class RecursivePascal {
                     System.out.format("%6d", (binom(n, i)));
                 }
             }
-
         }
     }
 
@@ -41,15 +42,23 @@ public class RecursivePascal {
      * @return the binomial coefficient
      */
     private int binom(int n, int k) {
+        if (coeffTable[n][k] != 0) {
+            return coeffTable[n][k];
+        }
         if (k == 0 || n == k) {
+            coeffTable[n][k] = 1;
             return 1;
         }
-        return binom(n - 1, k - 1) + binom(n - 1, k);
+        int coeff = binom(n - 1, k - 1) + binom(n - 1, k);
+        coeffTable[n][k] = coeff;
+        return coeff;
     }
 
     public static void main(String[] args) {
         RecursivePascal pasc = new RecursivePascal();
-        pasc.upsideDown = false;
-        pasc.printPascal(10);
+        pasc.upsideDown = true;
+        pasc.coeffTable = new int[51][51];
+        pasc.printPascal(50);
+
     }
 }
