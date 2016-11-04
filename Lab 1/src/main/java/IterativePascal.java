@@ -1,7 +1,7 @@
 /**
  * Created by S. Stefani on 2016-11-04.
  */
-public class IterativePascal implements Pascal {
+public class IterativePascal extends ErrorPascal {
 
     /**
      * Print a simple Pascal's triangle iteratively (two nested loops).
@@ -9,6 +9,7 @@ public class IterativePascal implements Pascal {
      * @param n is the number of levels of the triangle
      */
     public void printPascal(int n) {
+        validateParameters(n);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= i; j++) {
                 System.out.format("%6d", (binom(i, j)));
@@ -25,6 +26,8 @@ public class IterativePascal implements Pascal {
      * @return the binomial coefficient
      */
     public int binom(int n, int k) {
+        validateParameters(n, k);
+
         int[] coeffBinom = new int[n + 1];
         coeffBinom[0] = 1;
 

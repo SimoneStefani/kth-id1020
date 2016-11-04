@@ -1,7 +1,7 @@
 /**
  * Created by S. Stefani on 2016-11-03.
  */
-public class RecursivePascal implements Pascal {
+public class RecursivePascal extends ErrorPascal {
     /**
      * Define if the triangle is to be printed upside down or right-side up.
      */
