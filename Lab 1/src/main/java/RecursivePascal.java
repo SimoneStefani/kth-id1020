@@ -1,13 +1,13 @@
 /**
+ * RecursivePascal.java
+ *
  * Created by S. Stefani on 2016-11-03.
  */
-public class RecursivePascal extends ErrorPascal {
-    /**
-     * Define if the triangle is to be printed upside down or right-side up.
-     */
-    public boolean upsideDown = false;
 
-    public int[][] coeffTable;
+public class RecursivePascal extends ErrorPascal {
+
+    public RecursivePascal() { super(); }
+    public RecursivePascal(boolean upsideDown) { super(upsideDown); }
 
     /**
      * Print a simple Pascal's triangle using recursion. Use upsideDown to toggle printing direction.
@@ -45,15 +45,15 @@ public class RecursivePascal extends ErrorPascal {
     public int binom(int n, int k) {
         validateParameters(n, k);
 
-        if (coeffTable[n][k] != 0) {
-            return coeffTable[n][k];
-        }
+        String binomKey = getCoeffHashKey(n, k);
+        if (coeffTable.containsKey(binomKey)) { return (Integer) coeffTable.get(binomKey); }
+
         if (k == 0 || n == k) {
-            coeffTable[n][k] = 1;
+            coeffTable.put(binomKey, 1);
             return 1;
         }
         int coeff = binom(n - 1, k - 1) + binom(n - 1, k);
-        coeffTable[n][k] = coeff;
+        coeffTable.put(binomKey, coeff);
         return coeff;
     }
 }

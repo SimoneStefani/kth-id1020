@@ -1,7 +1,13 @@
 /**
+ * IterativePascal.java
+ *
  * Created by S. Stefani on 2016-11-04.
  */
+
 public class IterativePascal extends ErrorPascal {
+
+    public IterativePascal() { super(); }
+    public IterativePascal(boolean upsideDown) { super(upsideDown); }
 
     /**
      * Print a simple Pascal's triangle iteratively (two nested loops).
@@ -10,11 +16,20 @@ public class IterativePascal extends ErrorPascal {
      */
     public void printPascal(int n) {
         validateParameters(n);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j <= i; j++) {
-                System.out.format("%6d ", (binom(i, j)));
+        if (!upsideDown) {
+            for (int i = 0; i <= n; i++) {
+                for (int j = 0; j <= i; j++) {
+                    System.out.format("%6d ", (binom(i, j)));
+                }
+                System.out.print("\n");
             }
-            System.out.print("\n");
+        } else {
+            for (int i = n; i >= 0; i--) {
+                for (int j = 0; j <= i; j++) {
+                    System.out.format("%6d ", (binom(i, j)));
+                }
+                System.out.print("\n");
+            }
         }
     }
 
@@ -28,6 +43,9 @@ public class IterativePascal extends ErrorPascal {
     public int binom(int n, int k) {
         validateParameters(n, k);
 
+        String binomKey = getCoeffHashKey(n, k);
+        if (coeffTable.containsKey(binomKey)) { return (Integer) coeffTable.get(binomKey); }
+
         int[] coeffBinom = new int[n + 1];
         coeffBinom[0] = 1;
 
@@ -39,6 +57,7 @@ public class IterativePascal extends ErrorPascal {
             }
         }
 
+        coeffTable.put(binomKey, coeffBinom[k]);
         return coeffBinom[k];
     }
 }
