@@ -23,7 +23,7 @@ public class Driver {
 
         System.out.print("Print recursive triangle:\n");
         recPasc.printPascal(n);
-        System.out.print("\n \nPrint recursive triangle:\n");
+        System.out.print("\n \nPrint iterative triangle:\n");
         iterPasc.printPascal(n);
     }
 }
