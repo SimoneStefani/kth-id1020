@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KTH-ID1020.iml" filepath="$PROJECT_DIR$/KTH-ID1020.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab 1/Lab 1.iml" filepath="$PROJECT_DIR$/Lab 1/Lab 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab 3/Lab 3.iml" filepath="$PROJECT_DIR$/Lab 3/Lab 3.iml" />
     </modules>
   </component>
 </project>

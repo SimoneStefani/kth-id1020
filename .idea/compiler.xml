@@ -26,6 +26,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="HW2" target="1.5" />
       <module name="KTH-ID1020" target="1.5" />
       <module name="Lab 1" target="1.5" />
     </bytecodeTargetLevel>

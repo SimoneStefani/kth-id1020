@@ -10,6 +10,8 @@
     <version>1.0</version>
     <modules>
         <module>Lab 1</module>
+        <module>HW2</module>
+        <module>Lab 3</module>
     </modules>
 
     <dependencies>
