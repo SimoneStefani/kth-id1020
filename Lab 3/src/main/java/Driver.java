@@ -1,45 +1,71 @@
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.ListIterator;
-
 /**
- * Created by S. Stefani on 2016-11-20.
+ * Driver.java
+ *
+ * Created by S. Stefani on 2016-11-21.
  */
+
+import edu.princeton.cs.algs4.Stopwatch;
+import edu.princeton.cs.introcs.StdIn;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Driver {
     public static void main(String[] args) {
-        LinkedList<String> myList = new LinkedList<String>();
+        System.out.println("|| ID1020 - Algorithms and Data Structures LAB 3 ||\n");
 
-        String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+        System.out.print("How many numbers should contain the list? ");
+        int n = StdIn.readInt();
 
-        Collections.addAll(myList, alphabet);
-        Collections.shuffle(myList);
+        int[] myArray = new int[n];
+        for (int i = 0; i < n; i++) {
+            myArray[i] = i;
+        }
+        shuffleArray(myArray);
+        SimpleLinkedList myList = new SimpleLinkedList();
+        myList.addAll(myArray);
 
-        System.out.println(myList);
-        System.out.println();
 
-        bubbleSortIterative(myList);
+        System.out.println("\nUnsorted list:");
+        myList.printList();
+        System.out.println("\n");
 
-        System.out.println(myList);
-        System.out.println();
+        Stopwatch timer = new Stopwatch();
+        bubbleSort(myList);
+        double time = timer.elapsedTime();
+
+        System.out.println("Sorted list:");
+        myList.printList();
+        System.out.println("\nOrdered in " + time + " seconds\n");
     }
 
-
-    public static void bubbleSortIterative(LinkedList<String> list) {
-
-        int r = list.size() - 2;
+    public static void bubbleSort(SimpleLinkedList list) {
+        int r = list.getCount() - 2;
         boolean swapped = true;
 
         while (r >= 0 && swapped) {
             swapped = false;
+            SimpleLinkedList.Node position = list.getFirstNode();
             for (int i = 0; i <= r; i++) {
-                if (list.get(i).compareTo(list.get(i + 1)) >= 1) {
+                if (list.currentValue(position) > list.nextValue(position)) {
                     swapped = true;
-                    String temp = list.get(i);
-                    list.set(i, list.get(i + 1));
-                    list.set(i + 1, temp);
+                    list.swap(position, position.next);
                 }
+                position = position.next;
             }
             r--;
+        }
+    }
+
+    public static void shuffleArray(int[] array) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i : array) {
+            list.add(i);
+        }
+
+        Collections.shuffle(list);
+
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i);
         }
     }
 }
