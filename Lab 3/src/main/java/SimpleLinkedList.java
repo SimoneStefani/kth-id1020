@@ -8,16 +8,27 @@ import java.util.NoSuchElementException;
 
 public class SimpleLinkedList {
     private Node first;
-    private int count;
+    private int length;
 
     public SimpleLinkedList() {
         first = null;
-        count = 0;
+
+        length = 0;
     }
 
     public SimpleLinkedList(Node first, int numNodes) {
         this.first = first;
-        count = numNodes;
+        length = numNodes;
+    }
+
+    /**
+     * Provides a hook to the first node on the list.
+     *
+     * @return the first node in the list
+     */
+    public Node getFirstNode() {
+        if (first == null) { throw new NoSuchElementException(); }
+        return first;
     }
 
     /**
@@ -26,18 +37,8 @@ public class SimpleLinkedList {
      * @param data of the new node
      */
     public void addFirst(int data) {
-        Node newNode = new Node();
-        newNode.data = data;
-        newNode.next = first;
-        first = newNode;
-        count++;
-    }
-
-    public int removeFirst() {
-        if (first == null) { throw new NoSuchElementException(); }
-        int data = first.data;
-        first = first.next;
-        return data;
+        first = new Node(data, first);
+        length++;
     }
 
     /**
@@ -51,28 +52,41 @@ public class SimpleLinkedList {
         }
     }
 
+    public int removeFirst() {
+        if (first == null) { throw new NoSuchElementException(); }
+        int data = first.data;
+        first = first.next;
+        return data;
+    }
+
+    /**
+     * Get the length of the list.
+     *
+     * @return the number of nodes in the list.
+     */
+    public int getLength() {
+        return length;
+    }
+
+    /**
+     * Se the length of the list.
+     *
+     * @param length of the list
+     */
+    public void setCount(int length) {
+        this.length = length;
+    }
+
     /**
      * Return the value stored in a node.
      *
      * @param node is the node
      * @return the integer stored in the node
      */
-    public int currentValue(Node node) {
+    public int getValue(Node node) {
         if (node == null) { throw new NoSuchElementException(); }
 
         return node.data;
-    }
-
-    /**
-     * Return the value of the next node.
-     *
-     * @param node is the node
-     * @return the integer in the next node
-     */
-    public int nextValue(Node node) {
-        if (node.next == null) { throw new NoSuchElementException(); }
-
-        return node.next.data;
     }
 
     /**
@@ -99,35 +113,5 @@ public class SimpleLinkedList {
             System.out.print(position.data + " ");
             position = position.next;
         }
-    }
-
-    /**
-     * Get the count of the nodes in the list.
-     *
-     * @return the number of nodes in the list.
-     */
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    /**
-     * Provides a hook to the first node on the list.
-     *
-     * @return the first node in the list
-     */
-    public Node getFirstNode() {
-        return first;
-    }
-
-    /**
-     * Internal class to model a Node.
-     */
-    class Node {
-        public int data;
-        public Node next;
     }
 }

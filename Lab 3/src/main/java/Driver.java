@@ -21,54 +21,33 @@ public class Driver {
             myArray[i] = i;
         }
         shuffleArray(myArray);
-        SimpleLinkedList myList1 = new SimpleLinkedList();
-        SimpleLinkedList myList2 = new SimpleLinkedList();
-        myList1.addAll(myArray);
-        myList2.addAll(myArray);
+        SimpleLinkedList sortingList = new SimpleLinkedList();
+        SimpleLinkedList inversionsList = new SimpleLinkedList();
+        sortingList.addAll(myArray);
+        inversionsList.addAll(myArray);
 
 
         System.out.println("\nUnsorted list:");
-        myList1.printList();
+        sortingList.printList();
         System.out.println("\n");
 
-        InversionCounter inv = new InversionCounter();
-        inv.countInversion(myList2);
+        InversionsCounter inv = new InversionsCounter();
+        long numInversions = inv.countInversions(inversionsList);
 
+        BubbleSort sorter = new BubbleSort();
         Stopwatch timer = new Stopwatch();
-        int swapCount = bubbleSort(myList1);
+        long swapCount = sorter.sort(sortingList);
         double time = timer.elapsedTime();
 
         System.out.println("Sorted list:");
-        myList1.printList();
+        sortingList.printList();
         System.out.println("\nOrdered in " + time + " seconds");
         System.out.println("Number of swaps: " + swapCount);
-        System.out.println("Computed number of inversions: " + inv.getNumberInversion());
+        System.out.println("Computed number of inversions: " + numInversions);
 
     }
 
-    public static int bubbleSort(SimpleLinkedList list) {
-        int r = list.getCount() - 2;
-        boolean swapped = true;
-        int swapCount = 0;
-
-        while (r >= 0 && swapped) {
-            swapped = false;
-            SimpleLinkedList.Node position = list.getFirstNode();
-            for (int i = 0; i <= r; i++) {
-                if (list.currentValue(position) > list.nextValue(position)) {
-                    swapped = true;
-                    list.swap(position, position.next);
-                    swapCount++;
-                }
-                position = position.next;
-            }
-            r--;
-        }
-
-        return swapCount;
-    }
-
-    public static void shuffleArray(int[] array) {
+    private static void shuffleArray(int[] array) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i : array) {
             list.add(i);
