@@ -12,6 +12,7 @@
         <module>Lab 1</module>
         <module>HW2</module>
         <module>Lab 3</module>
+        <module>Lab 4</module>
     </modules>
 
     <dependencies>
