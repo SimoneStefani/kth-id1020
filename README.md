@@ -6,3 +6,7 @@ _This repository contains code written during the fall semester 2016 by Simone S
 
 __Laboratories__
 - [x] LAB1 - **Basic Programming and Data Abstraction**
+- [x] LAB2 - **Complexity of Algorithms** _(only theoretical questions, no code)_
+- [x] LAB3 - **Sorting**
+- [ ] LAB4 - **Tree**
+
