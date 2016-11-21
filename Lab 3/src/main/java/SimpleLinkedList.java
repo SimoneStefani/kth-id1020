@@ -15,6 +15,11 @@ public class SimpleLinkedList {
         count = 0;
     }
 
+    public SimpleLinkedList(Node first, int numNodes) {
+        this.first = first;
+        count = numNodes;
+    }
+
     /**
      * Add node with specify data (integer).
      *
@@ -28,14 +33,21 @@ public class SimpleLinkedList {
         count++;
     }
 
+    public int removeFirst() {
+        if (first == null) { throw new NoSuchElementException(); }
+        int data = first.data;
+        first = first.next;
+        return data;
+    }
+
     /**
      * Add all the integers in an array to the linked list. Preserve the order.
      *
      * @param numbers is the array of integers
      */
     public void addAll(int[] numbers) {
-        for (int num : numbers) {
-            addFirst(num);
+        for (int i = numbers.length - 1; i >= 0; i--) {
+            addFirst(numbers[i]);
         }
     }
 
@@ -83,7 +95,7 @@ public class SimpleLinkedList {
     public void printList() {
         if (first == null) { throw new NoSuchElementException(); }
         Node position = first;
-        while (position.next != null) {
+        while (position != null) {
             System.out.print(position.data + " ");
             position = position.next;
         }
@@ -96,6 +108,10 @@ public class SimpleLinkedList {
      */
     public int getCount() {
         return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     /**

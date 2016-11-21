@@ -21,26 +21,35 @@ public class Driver {
             myArray[i] = i;
         }
         shuffleArray(myArray);
-        SimpleLinkedList myList = new SimpleLinkedList();
-        myList.addAll(myArray);
+        SimpleLinkedList myList1 = new SimpleLinkedList();
+        SimpleLinkedList myList2 = new SimpleLinkedList();
+        myList1.addAll(myArray);
+        myList2.addAll(myArray);
 
 
         System.out.println("\nUnsorted list:");
-        myList.printList();
+        myList1.printList();
         System.out.println("\n");
 
+        InversionCounter inv = new InversionCounter();
+        inv.countInversion(myList2);
+
         Stopwatch timer = new Stopwatch();
-        bubbleSort(myList);
+        int swapCount = bubbleSort(myList1);
         double time = timer.elapsedTime();
 
         System.out.println("Sorted list:");
-        myList.printList();
-        System.out.println("\nOrdered in " + time + " seconds\n");
+        myList1.printList();
+        System.out.println("\nOrdered in " + time + " seconds");
+        System.out.println("Number of swaps: " + swapCount);
+        System.out.println("Computed number of inversions: " + inv.getNumberInversion());
+
     }
 
-    public static void bubbleSort(SimpleLinkedList list) {
+    public static int bubbleSort(SimpleLinkedList list) {
         int r = list.getCount() - 2;
         boolean swapped = true;
+        int swapCount = 0;
 
         while (r >= 0 && swapped) {
             swapped = false;
@@ -49,11 +58,14 @@ public class Driver {
                 if (list.currentValue(position) > list.nextValue(position)) {
                     swapped = true;
                     list.swap(position, position.next);
+                    swapCount++;
                 }
                 position = position.next;
             }
             r--;
         }
+
+        return swapCount;
     }
 
     public static void shuffleArray(int[] array) {
