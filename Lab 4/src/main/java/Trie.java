@@ -1,4 +1,6 @@
-import java.util.ArrayList;
+import java.util.AbstractMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 /**
  * Trie.java
@@ -165,5 +167,42 @@ public class Trie {
         }
 
         return valueSum;
+    }
+
+    public Iterator<Entry<String, Integer>> iterator(String prefix) {
+        return new TrieIterator(prefix);
+    }
+
+    private class TrieIterator implements Iterator<Entry<String, Integer>> {
+        TrieNode startingNode;
+        TrieNode currentNode;
+        String prefix;
+
+        public TrieIterator(String prefix) {
+            this.prefix = prefix;
+            this.startingNode = get(root, prefix, 0);
+            this.currentNode = startingNode;
+        }
+
+        public boolean hasNext() {
+            // Simulate a call for next()
+            Entry<String,Integer> next = next();
+
+            // Reset the index variable that we modified in our "simulation"
+
+            // Did the next value, i.e. the simulated next() return something useful?
+            return next != null;
+        }
+
+        public Entry<String, Integer> next() {
+
+            return getNext(currentNode);
+        }
+
+        private Entry<String,Integer> getNext(TrieNode currentNode)
+        {
+            return null;
+
+        }
     }
 }

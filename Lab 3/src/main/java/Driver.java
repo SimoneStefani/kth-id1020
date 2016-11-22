@@ -32,7 +32,9 @@ public class Driver {
         System.out.println("\n");
 
         InversionsCounter inv = new InversionsCounter();
+        Stopwatch timer1 = new Stopwatch();
         long numInversions = inv.countInversions(inversionsList);
+        double time1 = timer1.elapsedTime();
 
         BubbleSort sorter = new BubbleSort();
         Stopwatch timer = new Stopwatch();
@@ -43,7 +45,7 @@ public class Driver {
         sortingList.printList();
         System.out.println("\nOrdered in " + time + " seconds");
         System.out.println("Number of swaps: " + swapCount);
-        System.out.println("Computed number of inversions: " + numInversions);
+        System.out.println("Computed number of inversions: " + numInversions + " (in " + time1 + " seconds)");
 
     }
 
