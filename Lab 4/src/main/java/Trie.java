@@ -8,7 +8,9 @@ public class Trie {
     private TrieNode root;
     private int numKeys;
 
-    public Trie() { }
+    public Trie() {
+        this.root = new TrieNode();
+    }
 
     /**
      * Helper method to add a key to the structure
@@ -87,5 +89,41 @@ public class Trie {
         // Iteratively search in the correct children
         char keyCharacter = key.charAt(charPointer);
         return get(keyNode.children[keyCharacter], key, charPointer + 1);
+    }
+
+    /**
+     * Helper method to compute the values in the subtrees of a prefix.
+     *
+     * @param prefix is the given prefix
+     * @return the sum of the values
+     */
+    public int count(String prefix) {
+        TrieNode startingNode = get(root, prefix, 0);
+
+        return count(startingNode);
+    }
+
+    /**
+     * Compute the sum of the values of the nodes in the subtrees of a given
+     * node (which is included in the count).
+     *
+     * @param keyNode is the starting node
+     * @return the sum of the values
+     */
+    private int count(TrieNode keyNode) {
+        // If the node is null there is no value
+        if (keyNode == null) {
+            return 0;
+        }
+
+        // Add value of current node
+        int valueSum = keyNode.value;
+
+        // Sum values recursively and for all the possible 256 ASCII chars
+        for (char c = 0; c < 256; c++) {
+            valueSum += count(keyNode.children[c]);
+        }
+
+        return valueSum;
     }
 }

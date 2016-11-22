@@ -5,6 +5,6 @@
  */
 
 public class TrieNode {
-    public int value = 0;
-    public TrieNode[] children = new TrieNode[26];
+    public int value;
+    public TrieNode[] children = new TrieNode[256];
 }
