@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Trie.java
  *
@@ -122,6 +124,44 @@ public class Trie {
         // Sum values recursively and for all the possible 256 ASCII chars
         for (char c = 0; c < 256; c++) {
             valueSum += count(keyNode.children[c]);
+        }
+
+        return valueSum;
+    }
+
+    /**
+     * Helper method to compute the number of distinct keys with given prefix
+     *
+     * @param prefix is the prefix
+     * @return the number of distinct keys
+     */
+    public int distinct(String prefix) {
+        TrieNode startingNode = get(root, prefix, 0);
+
+        return startingNode.value > 0 ? distinct(startingNode) - 1 : distinct(startingNode);
+    }
+
+    /**
+     * Compute the number of distinct keys starting with a given prefix
+     *
+     * @param keyNode is the node of the prefix
+     * @return the number of distinct keys
+     */
+    private int distinct(TrieNode keyNode) {
+        // If the node is null there is no value
+        if (keyNode == null) {
+            return 0;
+        }
+
+        // If the node has a value greater than zero it represent a new distinct key
+        int valueSum = 0;
+        if (keyNode.value > 0) {
+            valueSum++;
+        }
+
+        // Sum values recursively and for all the possible 256 ASCII chars
+        for (char c = 0; c < 256; c++) {
+            valueSum += distinct(keyNode.children[c]);
         }
 
         return valueSum;
