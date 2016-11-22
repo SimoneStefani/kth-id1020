@@ -169,40 +169,81 @@ public class Trie {
         return valueSum;
     }
 
+
     public Iterator<Entry<String, Integer>> iterator(String prefix) {
         return new TrieIterator(prefix);
     }
 
+    /**
+     * Define iterator to visit all the node in the subtrees of a given prefix.
+     */
     private class TrieIterator implements Iterator<Entry<String, Integer>> {
-        TrieNode startingNode;
-        TrieNode currentNode;
-        String prefix;
+        private TrieNode startingNode;
+        private String prefix;
+        private int nodesToVisit;
+        private int nodesVisited;
 
         public TrieIterator(String prefix) {
             this.prefix = prefix;
             this.startingNode = get(root, prefix, 0);
-            this.currentNode = startingNode;
         }
 
+        /**
+         * Check if there are nodes left to visit in the tree.
+         *
+         * @return boolean
+         */
         public boolean hasNext() {
-            // Simulate a call for next()
+            // Check if calling next() we are getting null
             Entry<String,Integer> next = next();
+            nodesToVisit--;
 
-            // Reset the index variable that we modified in our "simulation"
-
-            // Did the next value, i.e. the simulated next() return something useful?
             return next != null;
         }
 
+        /**
+         * Helper method to call next() and advance the iterator.
+         *
+         * @return a Map.Entity with key-value for a
+         */
         public Entry<String, Integer> next() {
+            nodesToVisit++;
+            nodesVisited = -1;
 
-            return getNext(currentNode);
+            return next(startingNode, prefix);
         }
 
-        private Entry<String,Integer> getNext(TrieNode currentNode)
-        {
-            return null;
+        /**
+         * Visit a children node of a given node and return its entry with key-value.
+         * Advance to a new children at every call.
+         *
+         * @param currentNode is the node to start from
+         * @param key is the key of a node (built on the fly)
+         * @return a Map.Entity with key-value for the node
+         */
+        private Entry<String,Integer> next(TrieNode currentNode, String key) {
+            // We are visiting one node
+            nodesVisited++;
 
+            // When we have visited the planned nodes to visit (one more than previous iteration)
+            // then return an Entry with Key and Value to the recursive call
+            if (nodesVisited == nodesToVisit) {
+                return new AbstractMap.SimpleEntry<String,Integer>(key, currentNode.value);
+            }
+
+            // Visit recursively all the valid children of the node and return the entry
+            for (char c = 0; c < 256; c++) {
+                if (currentNode.children[c] != null) {
+                    Entry<String, Integer> next = next(currentNode.children[c], key + c);
+
+                    if (next != null) {
+                        return next;
+                    }
+                }
+            }
+
+            // No more children nodes to visit return null
+            return null;
         }
     }
 }

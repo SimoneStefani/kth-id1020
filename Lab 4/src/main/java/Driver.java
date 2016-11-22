@@ -13,12 +13,13 @@ public class Driver {
         tester.put("acfd");
         tester.put("acfe");
         tester.put("acfd");
+        tester.put("bcfd");
 
         System.out.println(tester.get("acf"));
+
         System.out.println(tester.distinct("a"));
 
         Iterator iter = tester.iterator("ac");
-
         while (iter.hasNext()) {
             System.out.println(iter.next());
         }
