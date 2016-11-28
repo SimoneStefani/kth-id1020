@@ -10,7 +10,6 @@ import java.util.Map.Entry;
 
 public class Trie {
     private TrieNode root;
-    private int numKeys;
 
     public Trie() {
         this.root = new TrieNode();
@@ -167,6 +166,19 @@ public class Trie {
         }
 
         return valueSum;
+    }
+
+    public char mostDifferentKeyLetter() {
+        char letter = 0;
+
+
+        for (char c = 0; c < 256; c++) {
+            if (distinct(root.children[c]) > distinct(root.children[letter])) {
+                letter = c;
+            }
+        }
+
+        return letter;
     }
 
 

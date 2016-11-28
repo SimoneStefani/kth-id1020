@@ -32,7 +32,7 @@
       <module name="KTH-ID1020" target="1.5" />
       <module name="Lab 1" target="1.5" />
       <module name="Lab 3" target="1.5" />
-      <module name="Lab 4" target="1.5" />
+      <module name="Lab 4" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
