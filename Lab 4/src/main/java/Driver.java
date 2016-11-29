@@ -1,10 +1,11 @@
-import edu.princeton.cs.introcs.In;
-
-import java.util.*;
-
 /**
+ * Driver.java
+ *
  * Created by S. Stefani on 2016-11-22.
  */
+
+import edu.princeton.cs.introcs.In;
+import java.util.*;
 import java.net.URL;
 
 public class Driver {
@@ -47,29 +48,27 @@ public class Driver {
             }
         }
 
-        Map<String, Integer> words = new TreeMap<String, Integer>();
+        PriorityQueue<TrieIterator.Entry> highestFreq = new PriorityQueue<TrieIterator.Entry>(10);
+        PriorityQueue<TrieIterator.Entry> lowestFreq = new PriorityQueue<TrieIterator.Entry>(10, Collections.reverseOrder());
+
         ArrayList<String> prefix2 = new ArrayList<String>();
 
-        Iterator<Map.Entry<String, Integer>> maxIter = dickensTrie.iterator("");
-        while (maxIter.hasNext()) {
-            Map.Entry<String, Integer> entr = maxIter.next();
+        Iterator<TrieIterator.Entry> itr = dickensTrie.iterator("");
+        while (itr.hasNext()) {
+            TrieIterator.Entry entr = itr.next();
             if (entr.getValue() > 0) {
-                words.put(entr.getKey(), entr.getValue());
+                highestFreq.add(entr);
+                lowestFreq.add(entr);
                 if (entr.getKey().length() > 2 && !prefix2.contains(entr.getKey())) {
                     prefix2.add(entr.getKey().substring(0, 2));
                 }
+                if (highestFreq.size() > 10) { highestFreq.poll(); }
+                if (lowestFreq.size() > 10) { lowestFreq.poll(); }
             }
         }
 
-
-
-        ArrayList<Map.Entry<String,Integer>> ar = new ArrayList<Map.Entry<String,Integer>>();
-        for (Map.Entry<String, Integer> et : entriesSortedByIntegeralues(words)) { ar.add(et); }
-
-        System.out.println("\nTen of the least common words are: " + ar.subList(0, 10));
-        List<Map.Entry<String,Integer>> biggest = ar.subList(ar.size()-10, ar.size());
-        Collections.reverse(biggest);
-        System.out.println("\nTen of the most common words are: " + biggest);
+        System.out.println("\nTen of the least common words are: " + lowestFreq);
+        System.out.println("\nTen of the most common words are: " + highestFreq);
 
         String commonPref = prefix2.get(0);
         int max = 0;
@@ -84,23 +83,5 @@ public class Driver {
 
         char mostDifferentLetter = dickensTrie.mostDifferentKeyLetter();
         System.out.println("\nThe letter that the most different words start with is: " + String.valueOf(mostDifferentLetter));
-
-
-
-    }
-
-
-    private static <String,Integer extends Comparable<? super Integer>>
-    SortedSet<Map.Entry<String,Integer>> entriesSortedByIntegeralues(Map<String,Integer> map) {
-        SortedSet<Map.Entry<String,Integer>> sortedEntries = new TreeSet<Map.Entry<String,Integer>>(
-            new Comparator<Map.Entry<String,Integer>>() {
-                @Override public int compare(Map.Entry<String,Integer> e1, Map.Entry<String,Integer> e2) {
-                    int res = e1.getValue().compareTo(e2.getValue());
-                    return res != 0 ? res : 1;
-                }
-            }
-        );
-        sortedEntries.addAll(map.entrySet());
-        return sortedEntries;
     }
 }
