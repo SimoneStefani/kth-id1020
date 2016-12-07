@@ -12,6 +12,7 @@
         <module>Lab 1</module>
         <module>Lab 3</module>
         <module>Lab 4</module>
+        <module>Lab 5</module>
     </modules>
 
     <dependencies>
@@ -23,6 +24,11 @@
         <dependency>
             <groupId>edu.princeton.cs.introcs</groupId>
             <artifactId>stdlib-package</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>se.kth.id1020</groupId>
+            <artifactId>graphs</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>
