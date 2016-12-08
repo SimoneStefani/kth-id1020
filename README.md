@@ -9,4 +9,5 @@ __Laboratories__
 - [x] LAB2 - **Complexity of Algorithms** _(only theoretical questions, no code)_
 - [x] LAB3 - **Sorting**
 - [x] LAB4 - **Tree**
+- [x] LAB5 - **Graph**
 
