@@ -22,5 +22,13 @@ public class Paths {
         } else {
             System.out.println("The graph is not valid!");
         }
+
+        System.out.println();
+
+        ShortestPaths sp2 = new ShortestPaths(g, false);
+        sp2.findPath("Renyn", "Parses");
+
+        ShortestPaths sp1 = new ShortestPaths(g, true);
+        sp1.findPath("Renyn", "Parses");
     }
 }
