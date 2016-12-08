@@ -5,40 +5,22 @@
  */
 
 import se.kth.id1020.DataSource;
-import se.kth.id1020.Edge;
 import se.kth.id1020.Graph;
 
 public class Paths {
 
     public static void main(String[] args) {
+        System.out.println("|| ID1020 - Algorithms and Data Structures LAB 5 ||\n");
         Graph g = DataSource.load();
-        // work on g
+        ConnectedComponents cc = new ConnectedComponents(g);
+        System.out.println();
 
-        System.out.println(connectedComponents(g));
-    }
-
-    public static int connectedComponents(Graph g) {
-        int numberOfComponents = 0;
-        boolean[] visited = new boolean[g.numberOfVertices()];
-
-        for (int i = 0; i < g.numberOfVertices(); i++) {
-            if (!visited[i]) {
-                dfs(g, i, visited);
-                numberOfComponents++;
-            }
-        }
-
-        return numberOfComponents;
-    }
-
-    public static void dfs(Graph g, int vertex, boolean[] visited) {
-        visited[vertex] = true;
-        for (Edge edg : g.adj(vertex)) {
-            int w = edg.to == vertex ? edg.from : edg.to;
-            if (!visited[w]) {
-                dfs(g, w, visited);
-            }
+        if (cc.getNumberOfComponents() == 1) {
+            System.out.println("The graph is fully connected!");
+        } else if (cc.getNumberOfComponents() > 1) {
+            System.out.println("The graph is formed by " + cc.getNumberOfComponents() + " connected subgraphs.");
+        } else {
+            System.out.println("The graph is not valid!");
         }
     }
-
 }
