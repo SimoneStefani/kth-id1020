@@ -10,6 +10,7 @@
         <module name="Lab 3" />
         <module name="Lab 4" />
         <module name="Lab 5" />
+        <module name="Sorting" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
       <module name="Lab 3" target="1.5" />
       <module name="Lab 4" target="1.6" />
       <module name="Lab 5" target="1.5" />
+      <module name="Sorting" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
