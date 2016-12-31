@@ -7,6 +7,7 @@
 public class Selection extends Sort {
     public static void main(String[] args) {
         Integer[] a = {6, 3, 8, 1, 2, 4, 9, 5, 7};
+        show(a);
         sort(a);
         assert isSorted(a);
         show(a);
