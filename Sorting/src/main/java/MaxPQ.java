@@ -1,6 +1,9 @@
 /**
+ * Maximum-oriented priority queue
+ *
  * Created by S. Stefani on 2017-01-01.
  */
+
 public class MaxPQ<Key extends Comparable<Key>> {
     private Key[] pq;
     private int n = 0;

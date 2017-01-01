@@ -1,8 +1,11 @@
 import edu.princeton.cs.introcs.StdRandom;
 
 /**
+ * Quicksort
+ *
  * Created by S. Stefani on 2016-12-31.
  */
+
 public class Quick extends Sort {
     public static void main(String[] args) {
         Integer[] a = {6, 3, 8, 9, 2, 1, 4, 5, 7};
