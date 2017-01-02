@@ -14,6 +14,7 @@
         <module>Lab 4</module>
         <module>Lab 5</module>
         <module>Sorting</module>
+        <module>Searching</module>
     </modules>
 
     <dependencies>
