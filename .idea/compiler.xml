@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Fundamentals" />
         <module name="Lab 1" />
         <module name="Lab 3" />
         <module name="Lab 4" />
@@ -15,6 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Fundamentals" target="1.5" />
       <module name="HW2" target="1.5" />
       <module name="KTH-ID1020" target="1.5" />
       <module name="Lab 1" target="1.5" />
