@@ -1,26 +1,32 @@
+import java.util.Iterator;
+
 /**
  * Created by S. Stefani on 2017-01-06.
  */
-public class DepthFirstSearch {
+public class BreadthFirstSearch {
     private boolean[] marked;
     private int[] edgeTo;
     private int s;
 
-    public DepthFirstSearch(Graph g, int s) {
+    public BreadthFirstSearch(Graph g, int s) {
         marked = new boolean[g.V()];
         edgeTo = new int[g.V()];
         this.s = s;
-        dfs(g, s);
+        bfs(g, s);
     }
 
-    private void dfs(Graph g, int s) {
+    private void bfs(Graph g, int s) {
+        Queue<Integer> queue = new Queue<Integer>();
         marked[s] = true;
-
-        for (int w : g.adj(s)) {
-            if (!marked[w]) {
-                edgeTo[w] = s;
-                dfs(g, w);
-
+        queue.enqueue(s);
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
+            for (int w : g.adj(v)) {
+                if (!marked[w]) {
+                    edgeTo[w] = v;
+                    marked[w] = true;
+                    queue.enqueue(w);
+                }
             }
         }
     }
@@ -36,14 +42,10 @@ public class DepthFirstSearch {
         for (int x = v; x != s; x = edgeTo[x]) {
             path.push(x);
         }
-
         path.push(s);
 
         return path;
     }
 
-    public boolean marked(int v) {
-        return marked[v];
-    }
 
 }
