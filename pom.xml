@@ -16,6 +16,7 @@
         <module>Sorting</module>
         <module>Searching</module>
         <module>Fundamentals</module>
+        <module>Graphs</module>
     </modules>
 
     <dependencies>
